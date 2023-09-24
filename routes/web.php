@@ -14,19 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home',[
+        'page_name' => 'Home Page',
+        'course_name' => 'Laravel 10',
+    ]);
 })->name('home');
 
 Route::get('/about-us', function () {
-    return view('about');
+    return view('about',[
+        'page_name' => 'About Page',
+    ]);
 })->name('about');
 
 Route::get('/contact', function () {
-    return view('contact');
+    $page_name = "Contact Page";
+    $contact_number = "01885748574";
+    return view('contact',compact('page_name','contact_number'));
 })->name('contact');
 
 Route::get('/service', function () {
-    return view('service');
+    $page_name = "Service Page";
+    $services = [
+        'Web Design',
+        'Web Development',
+        'Graphics Design',
+        'SEO',
+        'Networking',
+    ];
+    return view('service',compact('page_name','services'));
 })->name('service');
 
 
