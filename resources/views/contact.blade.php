@@ -3,30 +3,19 @@
     <div class="row">
         <div class="col-md-12">
             <h1>{{ $page_name }}</h1>
-            @if ($product_count < 10)
-                <p> Need to refill product </p>
-            @else
-                <p> Product Count: {{ $product_count }} </p>
-            @endif
-
-
-
-            @switch($color)
-                @case('blue')
-                    <p>Blue color product is available</p>
-                @break
-
-                @case('red')
-                    <p>Red color product is available</p>
-                @break
-
-                @case('green')
-                    <p>Green color product is available</p>
-                @break
-
-                @default
-                    <p> No product available </p>
-            @endswitch
+            <ul>
+                @foreach ($products as $key => $product)
+                    <li>
+                        <p><strong>Product Number:</strong> {{ $key }}</p>
+                        <div>
+                            <p> {{ $product['product_name'] }} </p>
+                            <p> {{ $product['color'] }} </p>
+                            <p> {{ $product['price'] }} </p>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+            <p> Product Count: {{ $product_count }} </p>
         </div>
     </div>
 @endsection

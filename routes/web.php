@@ -14,23 +14,36 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home',[
+    return view('home', [
         'page_name' => 'Home Page',
         'course_name' => 'Laravel 10',
     ]);
 })->name('home');
 
 Route::get('/about-us', function () {
-    return view('about',[
+    return view('about', [
         'page_name' => 'About Page',
     ]);
 })->name('about');
 
 Route::get('/contact', function () {
     $page_name = "Contact Page";
-    $product_count = 20;
+    $products = [
+        1 => [
+            'product_name' => 'Polo Shirt',
+            'color' => 'Green',
+            'price' => '$250',
+        ],
+        2 => [
+            'product_name' => 'Sun Glass',
+            'color' => 'Black',
+            'price' => '$40',
+        ],
+    ];
+
+    $product_count = count($products);
     $color = "";
-    return view('contact',compact('page_name','product_count','color'));
+    return view('contact', compact('page_name', 'product_count', 'color','products'));
 })->name('contact');
 
 Route::get('/service', function () {
@@ -43,7 +56,7 @@ Route::get('/service', function () {
         'SEO',
         'Networking',
     ];
-    return view('service',compact('page_name','services'));
+    return view('service', compact('page_name', 'services'));
 })->name('service');
 
 
