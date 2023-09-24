@@ -28,12 +28,14 @@ Route::get('/about-us', function () {
 
 Route::get('/contact', function () {
     $page_name = "Contact Page";
-    $contact_number = "01885748574";
-    return view('contact',compact('page_name','contact_number'));
+    $product_count = 20;
+    $color = "";
+    return view('contact',compact('page_name','product_count','color'));
 })->name('contact');
 
 Route::get('/service', function () {
     $page_name = "Service Page";
+
     $services = [
         'Web Design',
         'Web Development',
