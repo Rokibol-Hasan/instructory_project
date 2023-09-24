@@ -14,11 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home', [
+    $data =  [
         'page_name' => 'Home Page',
         'course_name' => 'Laravel 10',
-    ]);
+    ];
+    return response($data)
+        ->header('Content-Type', 'application/json')
+        ->cookie('My_IDcard', 'Rakib', 3600);
 })->name('home');
+
+
+
 
 Route::get('/about-us', function () {
     return view('about', [
@@ -43,7 +49,7 @@ Route::get('/contact', function () {
 
     $product_count = count($products);
     $color = "";
-    return view('contact', compact('page_name', 'product_count', 'color','products'));
+    return view('contact', compact('page_name', 'product_count', 'color', 'products'));
 })->name('contact');
 
 Route::get('/service', function () {
