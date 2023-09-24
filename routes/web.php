@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $data =  [
+Route::get('/', function (Request $request) {
+
+    // return response($data)
+    //     ->header('Content-Type', 'application/json')
+    //     ->cookie('My_IDcard','Rakib',3600);
+
+    dd($request->all());
+
+    return view('home', [
         'page_name' => 'Home Page',
-        'course_name' => 'Laravel 10',
-    ];
-    return response($data)
-        ->header('Content-Type', 'application/json')
-        ->cookie('My_IDcard', 'Rakib', 3600);
+        'course_name' => 'Laravel 10 Master Course'
+    ]);
 })->name('home');
 
 
@@ -66,6 +71,26 @@ Route::get('/service', function () {
 })->name('service');
 
 
+Route::get('/send_me_details', function (Request $request) {
+    $secret_key = 9235;
+    $user_key = $request->user_key;
+
+    $data = [
+        'name' => 'Rakib',
+        'secret_key' => '9235',
+        'mobile_number' => '01885794485',
+    ];
+
+    if ($secret_key == $user_key) {
+        return response()->json([
+            'Details' => $data,
+        ]);
+    } else {
+        return response([
+            'Message' => 'Information invalid'
+        ], 400);
+    }
+});
 
 
 
