@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\UserInfoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,4 @@ Route::get('/', [FrontController::class, 'home'])->name('home');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('/service', [FrontController::class, 'service'])->name('service');
-Route::get('/send_me_details', [FrontController::class, 'sendMeDetails']);
+Route::get('/send_me_details', UserInfoController::class)->name('sendmedetails');
