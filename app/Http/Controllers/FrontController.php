@@ -53,5 +53,9 @@ class FrontController extends Controller
         return view('service', compact('page_name', 'services'));
     }
 
+    public function(){
+        
+    }
+
 
 }
